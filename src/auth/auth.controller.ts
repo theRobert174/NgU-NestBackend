@@ -1,12 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
+import { CreateUserDto, LoginDto, RegisterUserDto, UpdateAuthDto } from './dto';
 
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +17,11 @@ export class AuthController {
   @Post('/login')
   login(@Body() loginDto: LoginDto){
     return this.authService.login(loginDto);
+  }
+
+  @Post('/register')
+  register(@Body() registerDto: RegisterUserDto){
+    return this.authService.register(registerDto);
   }
 
   @Get()
